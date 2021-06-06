@@ -73,8 +73,16 @@ function iniciarJogo(){
     if(direction == "up") snakeY -=box;
     if(direction == "down") snakeY +=box;
 
-    //função pop para tirar o ultimo elemento do array
-    snake.pop();
+    // criando condição para funcionalidade
+    if(snakeX != food.x  || snakeY != food.y){
+         //função pop para tirar o ultimo elemento do array
+        snake.pop();
+    }else{
+        food.x = Math.floor(Math.random() * 15 + 1) * box;
+        food.y = Math.floor(Math.random() * 15 + 1) * box;
+
+    }
+   
     
     //neste metodo vamos acrecentar um elemento na frente(unshift)
     let newHead = {
