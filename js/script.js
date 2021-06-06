@@ -9,6 +9,10 @@ snake[0] = {
 }
 
 let direction = "right";
+let food={
+    x: Math.floor(Math.random() * 15 + 1) * box,
+    y: Math.floor(Math.random() * 15 + 1) * box, 
+}
 
 // criando tabuleiro da cobrinha
 function criarBG() {
@@ -25,6 +29,14 @@ function criarCobrinha() {
     }
 }
 
+function drawFood() {
+    context.fillStyle= "red";
+    context.fillRect(food.x, food.y, box, box);
+    
+}
+
+
+
 // criando evento para funçaõ (update) e teclado
 document.addEventListener('keydown', update);
 
@@ -38,14 +50,20 @@ function update(event) {
 
 //função que inicia e para o jogo
 function iniciarJogo(){
+   
+    // condição para rolagem da cobrinha ate as bordas do tabuleiro
     if(snake[0].x > 15 * box && direction == "right") snake[0].x = 0;
     if(snake[0].x < 0  && direction == "left") snake[0].x = 16 * box;
     if(snake[0].y > 15 * box && direction == "down") snake[0].y = 0;
     if(snake[0].y < 0  && direction == "up") snake[0].y = 16 * box;
 
+   
     criarBG();
     criarCobrinha();
-   //ponto de inicio da cobrinha
+    drawFood();
+   
+   
+    //ponto de inicio da cobrinha
     let snakeX = snake[0].x;
     let snakeY = snake[0].y;
     
